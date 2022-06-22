@@ -52,5 +52,7 @@ public class Cv {
     @JoinColumn(name = "jobSeekerId")
     private JobSeeker jobSeeker;
 
-
+    public void addJobSeeker(JobSeeker jobSeeker){
+        this.jobSeeker=jobSeeker;
+    }
 }
