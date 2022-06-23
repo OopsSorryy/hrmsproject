@@ -37,7 +37,7 @@ public class SkillManager implements SkillService {
             Skill skill = this.skillDao.getById(skillId);
             return new SuccessDataResult<SkillDto>((modelMapper.map(skill, SkillDto.class)),"Data listed");
         }
-        return new ErrorDataResult<SkillDto>("ProgrammingLanguageAndTechnology Id doesn't exist");
+        return new ErrorDataResult<SkillDto>("Skill Id doesn't exist");
     }
 
     @Override
@@ -45,15 +45,15 @@ public class SkillManager implements SkillService {
         Skill skill = modelMapper.map(skillDto, Skill.class);
 
         modelMapper.map(this.skillDao.save(skill), SkillDto.class);
-        return new SuccessResult("ProgrammingLanguageAndTechnology added");
+        return new SuccessResult("Skill added");
     }
 
     @Override
     public Result delete(int programmingLanguageAndTechnologyId) {
         if(skillDao.getById(programmingLanguageAndTechnologyId)!=null){
             skillDao.deleteById(programmingLanguageAndTechnologyId);
-            return new SuccessResult("ProgrammingLanguageAndTechnology deleted");
+            return new SuccessResult("Skill deleted");
         }
-        return new ErrorResult("ProgrammingLanguageAndTechnology Id doesn't exist");
+        return new ErrorResult("Skill Id doesn't exist");
     }
 }

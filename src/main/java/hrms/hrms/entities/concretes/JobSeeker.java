@@ -5,10 +5,12 @@ import hrms.hrms.core.entities.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.Length;
 
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.List;
 
@@ -24,20 +26,16 @@ public class JobSeeker extends BaseEntity {
     @Column(name = "jobSeekerId")
     private int jobSeekerId;
 
-    @NotBlank
-    @Column(name = "firstName",nullable = false)
+    @Column(name = "firstName")
     private String firstName;
 
-    @NotBlank
-    @Column(name = "lastName",nullable = false)
+    @Column(name = "lastName")
     private String lastName;
 
-    @NotBlank
-    @Column(name = "nationalityId",nullable = false,unique = true,length = 11)
-    private Long nationalityId;
+    @Column(name = "nationalityId",unique = true)
+    private String nationalityId;
 
-    @NotBlank
-    @Column(name = "birthDate",nullable = false)
+    @Column(name = "birthDate")
     @Temporal(TemporalType.DATE)
     private Date birthDate;
 

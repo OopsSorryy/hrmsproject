@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Data
 @AllArgsConstructor
@@ -19,7 +21,7 @@ public class Skill {
     @Column(name = "id")
     private int skillId;
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "name")
     private String skillName;
 
     @ManyToOne()

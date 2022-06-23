@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Data
@@ -22,16 +23,13 @@ public class Employer extends BaseEntity {
     @Column(name = "employerId")
     private int employerId;
 
-    @NotBlank
-    @Column(name = "employerName",nullable = false,unique = true)
+    @Column(name = "employerName",unique = true)
     private String employerName;
 
-    @NotBlank
-    @Column(name = "webSite",nullable = false,unique = true)
+    @Column(name = "webSite",unique = true)
     private String webSite;
 
-    @NotBlank
-    @Column(name = "telephoneNumber",nullable = false,length = 11,unique = true)
+    @Column(name = "telephoneNumber",length = 11,unique = true)
     private String telephoneNumber;
 
     @JsonIgnore

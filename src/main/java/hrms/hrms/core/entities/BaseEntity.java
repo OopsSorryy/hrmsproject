@@ -16,13 +16,11 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 public class BaseEntity {
 
-    @NotBlank
-    @Email
-    @Column(name = "email",unique = true,nullable = false)
+
+    @Column(name = "email",unique = true)
     private String email;
 
-    @NotBlank
-    @Column(name = "password",nullable = false)
+    @Column(name = "password")
     private String password;
 
 }

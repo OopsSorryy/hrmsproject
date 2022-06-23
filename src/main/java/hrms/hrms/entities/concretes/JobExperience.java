@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Data
@@ -20,17 +22,17 @@ public class JobExperience {
     @Column(name = "jobExperienceId")
     private int jobExperienceId;
 
-    @Column(name = "employerName", nullable = false)
+    @Column(name = "employerName")
     private String employerName;
 
-    @Column(name = "jobPosition", nullable = false)
+    @Column(name = "jobPosition")
     private String jobPosition;
 
-    @Column(name = "startDate", nullable = false)
+    @Column(name = "startDate")
     @Temporal(TemporalType.DATE)
     private Date startDate;
 
-    @Column(name = "graduateDate")
+    @Column(name = "endDate")
     @Temporal(TemporalType.DATE)
     private Date endDate;
 

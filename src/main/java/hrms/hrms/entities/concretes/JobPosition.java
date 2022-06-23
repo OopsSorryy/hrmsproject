@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Data
 @AllArgsConstructor
@@ -14,12 +15,13 @@ import javax.validation.constraints.NotBlank;
 @Entity
 @Table(name = "jobPositions")
 public class JobPosition {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "jobPositionId")
     private int jobPositionId;
 
-    @NotBlank
-    @Column(name = "jobPositionName",nullable = false,unique = true)
+
+    @Column(name = "jobPositionName",unique = true)
     private String jobPositionName;
 }
