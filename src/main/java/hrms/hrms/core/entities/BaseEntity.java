@@ -23,4 +23,7 @@ public class BaseEntity {
     @Column(name = "password")
     private String password;
 
+    @Column(name = "confirmPassword")
+    private String matchingPassword;
+
 }

@@ -1,13 +1,13 @@
 package hrms.hrms.entities.dtos;
 
 
+import hrms.hrms.core.utilities.validator.JPasswordMatches;
+import hrms.hrms.core.utilities.validator.ValidPassword;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -17,6 +17,7 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@JPasswordMatches
 public class JobSeekerDto {
 
     @NotNull
@@ -29,12 +30,17 @@ public class JobSeekerDto {
 
     @NotNull
     @NotBlank
-    @Email
+    @Email(regexp = ".+@.+\\..+")
     private String email;
 
     @NotNull
     @NotBlank
+    @ValidPassword
     private String password;
+
+    @NotNull
+    @NotBlank
+    private String matchingPassword;
 
     @Size(min = 11, max = 11)
     private String nationalityId;

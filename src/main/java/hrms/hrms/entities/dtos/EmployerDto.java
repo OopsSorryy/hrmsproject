@@ -1,6 +1,8 @@
 package hrms.hrms.entities.dtos;
 
 
+import hrms.hrms.core.utilities.validator.EPasswordMatches;
+import hrms.hrms.core.utilities.validator.ValidPassword;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,6 +17,7 @@ import javax.validation.constraints.Size;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@EPasswordMatches
 public class EmployerDto {
 
     @NotNull
@@ -32,10 +35,15 @@ public class EmployerDto {
 
     @NotNull
     @NotBlank
-    @Email
+    @Email(regexp = ".+@.+\\..+")
     private String email;
 
     @NotNull
     @NotBlank
+    @ValidPassword
     private String password;
+
+    @NotNull
+    @NotBlank
+    private String matchingPassword;
 }
