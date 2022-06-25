@@ -1,6 +1,7 @@
 package hrms.hrms.entities.concretes;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,7 +25,12 @@ public class Skill {
     @Column(name = "name")
     private String skillName;
 
+    @JsonIgnore
     @ManyToOne()
     @JoinColumn(name = "cvId")
     private Cv cv;
+
+    public void addSkillToCv(Cv cv){
+        this.cv=cv;
+    }
 }

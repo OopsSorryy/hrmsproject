@@ -52,6 +52,11 @@ public class SkillController {
         return ResponseEntity.ok(status);
 
     }
+    @PutMapping("/{cvId}/skills/{skillId}")
+    public ResponseEntity<?> addSkillToCv(@PathVariable int cvId, @PathVariable int skillId){
+         return ResponseEntity.ok(this.skillService.addSkillToCv(cvId,skillId));
+
+    }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)

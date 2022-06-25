@@ -25,9 +25,7 @@ public class EducationDto {
     @NotBlank
     private String department;
 
-    @Temporal(TemporalType.DATE)
     private Date startDate;
 
-    @Temporal(TemporalType.DATE)
     private Date graduateDate;
 }

@@ -25,9 +25,7 @@ public class JobExperienceDto {
     @NotBlank
     private String jobPosition;
 
-    @Temporal(TemporalType.DATE)
     private Date startDate;
 
-    @Temporal(TemporalType.DATE)
     private Date endDate;
 }

@@ -1,6 +1,7 @@
 package hrms.hrms.entities.concretes;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -28,11 +29,22 @@ public class ForeignLanguage {
     @Column(name = "foreignLanguageName")
     private String foreignLanguageName;
 
+    @Column(name = "password")
+    private String password;
+
+    @Column(name = "confirmPassword")
+    private String confirmPassword;
+
 
     @Column(name = "foreignLanguageLevel")
     private int foreignLanguageLevel;
 
+    @JsonIgnore
     @ManyToOne()
     @JoinColumn(name = "cvId")
     private Cv cv;
+
+    public void addForeignLanguageToCv(Cv cv){
+        this.cv=cv;
+    }
 }

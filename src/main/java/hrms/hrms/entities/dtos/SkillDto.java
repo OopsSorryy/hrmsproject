@@ -15,5 +15,5 @@ public class SkillDto {
 
     @NotNull
     @NotBlank
-    private String Name;
+    private String skillName;
 }

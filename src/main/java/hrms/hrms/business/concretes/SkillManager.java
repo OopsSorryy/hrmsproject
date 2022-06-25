@@ -2,7 +2,9 @@ package hrms.hrms.business.concretes;
 
 import hrms.hrms.business.abstracts.SkillService;
 import hrms.hrms.core.utilities.results.*;
+import hrms.hrms.dataAccess.abstracts.CvDao;
 import hrms.hrms.dataAccess.abstracts.SkillDao;
+import hrms.hrms.entities.concretes.Cv;
 import hrms.hrms.entities.concretes.Skill;
 import hrms.hrms.entities.dtos.SkillDto;
 import org.modelmapper.ModelMapper;
@@ -18,10 +20,13 @@ public class SkillManager implements SkillService {
     private SkillDao skillDao;
     private ModelMapper modelMapper;
 
+    private CvDao cvDao;
+
     @Autowired
-    public SkillManager(SkillDao skillDao , ModelMapper modelMapper) {
+    public SkillManager(SkillDao skillDao , ModelMapper modelMapper,CvDao cvDao) {
         this.skillDao = skillDao;
         this.modelMapper = modelMapper;
+        this.cvDao = cvDao;
     }
 
     @Override
@@ -49,11 +54,20 @@ public class SkillManager implements SkillService {
     }
 
     @Override
-    public Result delete(int programmingLanguageAndTechnologyId) {
-        if(skillDao.getById(programmingLanguageAndTechnologyId)!=null){
-            skillDao.deleteById(programmingLanguageAndTechnologyId);
+    public Result delete(int skillId) {
+        if(skillDao.getBySkillId(skillId)!=null){
+            skillDao.deleteById(skillId);
             return new SuccessResult("Skill deleted");
         }
         return new ErrorResult("Skill Id doesn't exist");
+    }
+
+    @Override
+    public Result addSkillToCv(int cvId, int skillId) {
+        Cv cv = cvDao.getByCvId(cvId);
+        Skill skill = skillDao.getById(skillId);
+        skill.addSkillToCv(cv);
+        cvDao.save(cv);
+        return new SuccessResult("Cv added by Skill.");
     }
 }

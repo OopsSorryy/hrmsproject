@@ -2,7 +2,9 @@ package hrms.hrms.business.concretes;
 
 import hrms.hrms.business.abstracts.ForeignLanguageService;
 import hrms.hrms.core.utilities.results.*;
+import hrms.hrms.dataAccess.abstracts.CvDao;
 import hrms.hrms.dataAccess.abstracts.ForeignLanguageDao;
+import hrms.hrms.entities.concretes.Cv;
 import hrms.hrms.entities.concretes.ForeignLanguage;
 import hrms.hrms.entities.dtos.ForeignLanguageDto;
 import org.modelmapper.ModelMapper;
@@ -17,11 +19,13 @@ public class ForeignLanguageManager implements ForeignLanguageService {
 
     private ForeignLanguageDao foreignLanguageDao;
     private ModelMapper modelMapper;
+    private CvDao cvDao;
 
     @Autowired
-    public ForeignLanguageManager(ForeignLanguageDao foreignLanguageDao, ModelMapper modelMapper) {
+    public ForeignLanguageManager(ForeignLanguageDao foreignLanguageDao, ModelMapper modelMapper,CvDao cvDao) {
         this.foreignLanguageDao = foreignLanguageDao;
         this.modelMapper = modelMapper;
+        this.cvDao=cvDao;
     }
 
     @Override
@@ -55,5 +59,14 @@ public class ForeignLanguageManager implements ForeignLanguageService {
             return new SuccessResult("ForeignLanguage deleted");
         }
         return new ErrorResult("ForeignLanguage Id doesn't exist");
+    }
+
+    @Override
+    public Result addForeignLanguageToCv(int cvId, int foreignLanguageId) {
+        Cv cv = cvDao.getByCvId(cvId);
+        ForeignLanguage foreignLanguage = foreignLanguageDao.getByForeignLanguageId(foreignLanguageId);
+        foreignLanguage.addForeignLanguageToCv(cv);
+        cvDao.save(cv);
+        return new SuccessResult("Cv added by Foreign Language.");
     }
 }

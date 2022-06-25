@@ -19,6 +19,7 @@ public class JobPositionManager implements JobPositionService {
     private JobPositionDao jobPositionDao;
     private ModelMapper modelMapper;
 
+
     @Autowired
     public JobPositionManager(JobPositionDao jobPositionDao, ModelMapper modelMapper) {
         this.jobPositionDao = jobPositionDao;

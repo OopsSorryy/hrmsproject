@@ -54,6 +54,12 @@ public class ForeignLanguageController {
 
     }
 
+    @PutMapping("/{cvId}/foreignLanguages/{foreignLanguageId}")
+    public ResponseEntity<?> addForeignLanguageToCv(@PathVariable int cvId, @PathVariable int foreignLanguageId){
+        return ResponseEntity.ok(this.foreignLanguageService.addForeignLanguageToCv(cvId,foreignLanguageId));
+
+    }
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ErrorDataResult<Object> handleValidationException

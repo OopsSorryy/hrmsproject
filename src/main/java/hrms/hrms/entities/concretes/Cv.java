@@ -32,19 +32,19 @@ public class Cv {
     @Column(name = "description")
     private String description;
 
-    @JsonIgnore
+
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "cv")
     private List<Education> educations;
 
-    @JsonIgnore
+
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "cv")
     private List<ForeignLanguage> foreignLanguages;
 
-    @JsonIgnore
+
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "cv")
     private List<JobExperience> jobExperiences;
 
-    @JsonIgnore
+
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "cv")
     private List<Skill> skills;
 

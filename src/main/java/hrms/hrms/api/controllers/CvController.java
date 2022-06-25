@@ -5,6 +5,7 @@ import hrms.hrms.business.abstracts.CvService;
 import hrms.hrms.core.utilities.results.DataResult;
 import hrms.hrms.core.utilities.results.ErrorDataResult;
 import hrms.hrms.core.utilities.results.Result;
+import hrms.hrms.entities.dtos.CvAddDto;
 import hrms.hrms.entities.dtos.CvDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -42,9 +43,9 @@ public class CvController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<?> add(@Valid @RequestBody CvDto cvDto) {
+    public ResponseEntity<?> add(@Valid @RequestBody CvAddDto cvAddDto) {
 
-      return ResponseEntity.ok(this.cvService.add(cvDto));
+      return ResponseEntity.ok(this.cvService.add(cvAddDto));
 
     }
 

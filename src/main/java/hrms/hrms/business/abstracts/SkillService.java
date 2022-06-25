@@ -12,4 +12,6 @@ public interface SkillService {
     DataResult<SkillDto> getBySkillId(int skillId);
     Result add(SkillDto skillDto);
     Result delete(int skillId);
+
+    Result addSkillToCv(int cvId,int skillId );
 }

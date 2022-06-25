@@ -35,9 +35,7 @@ public class JobAdvertisementDto {
     @NotBlank
     private String jobOpenPosition;
 
-    @Temporal(TemporalType.DATE)
     private Date deadlineDate;
 
-    @Temporal(TemporalType.DATE)
     private Date releaseDate;
 }

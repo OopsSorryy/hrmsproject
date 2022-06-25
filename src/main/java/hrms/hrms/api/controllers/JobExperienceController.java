@@ -52,6 +52,16 @@ public class JobExperienceController {
         return ResponseEntity.ok(status);
 
     }
+    @PutMapping("/{cvId}/jobExperiences/{jobExperienceId}")
+    public ResponseEntity<?> addJobExperienceToCv(@PathVariable int cvId, @PathVariable int jobExperienceId){
+         return ResponseEntity.ok(this.jobExperienceService.addJobExperienceToCv(cvId,jobExperienceId));
+
+    }
+
+    @GetMapping("/getAllDesc")
+    public ResponseEntity<?>getAllSorted() {
+        return ResponseEntity.ok(this.jobExperienceService.getAllSorted());
+    }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)

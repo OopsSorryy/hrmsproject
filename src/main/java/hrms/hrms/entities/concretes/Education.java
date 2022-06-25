@@ -1,6 +1,7 @@
 package hrms.hrms.entities.concretes;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -36,9 +37,14 @@ public class Education {
     @Temporal(TemporalType.DATE)
     private Date graduateDate;
 
+    @JsonIgnore
     @ManyToOne()
     @JoinColumn(name = "cvId")
     private Cv cv;
+
+    public void addEducationToCv(Cv cv){
+        this.cv=cv;
+    }
 
 
 }

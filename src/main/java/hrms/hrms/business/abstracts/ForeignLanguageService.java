@@ -13,5 +13,6 @@ public interface ForeignLanguageService {
     DataResult<ForeignLanguageDto> getByForeignLanguageId(int foreignLanguageId);
     Result add(ForeignLanguageDto foreignLanguageDto);
     Result delete(int foreignLanguageId);
+    Result addForeignLanguageToCv(int cvId,int foreignLanguageId );
 
 }

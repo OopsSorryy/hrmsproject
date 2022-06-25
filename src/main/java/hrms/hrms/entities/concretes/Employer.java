@@ -29,7 +29,7 @@ public class Employer extends BaseEntity {
     @Column(name = "webSite",unique = true)
     private String webSite;
 
-    @Column(name = "telephoneNumber",length = 11,unique = true)
+    @Column(name = "telephoneNumber",unique = true)
     private String telephoneNumber;
 
     @JsonIgnore

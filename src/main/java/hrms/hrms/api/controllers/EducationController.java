@@ -53,6 +53,15 @@ public class EducationController {
         return ResponseEntity.ok(status);
 
     }
+    @PutMapping("/{cvId}/educations/{educationId}")
+    public ResponseEntity<?> addEducationToCv(@PathVariable int cvId, @PathVariable int educationId){
+         return ResponseEntity.ok(this.educationService.addEducationToCv(cvId,educationId));
+
+    }
+    @GetMapping("/getAllDesc")
+    public ResponseEntity<?>getAllSorted() {
+        return ResponseEntity.ok(this.educationService.getAllSorted());
+    }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)

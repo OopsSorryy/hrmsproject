@@ -4,15 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CvDto {
-
-    private JobSeekerDto jobSeeker;
+public class CvAddDto {
 
     private String photo;
 
@@ -21,12 +16,4 @@ public class CvDto {
     private String linkedInLink;
 
     private String description;
-
-    private List<EducationDto> educations;
-
-    private List<ForeignLanguageDto> foreignLanguages;
-
-    private List<JobExperienceDto> jobExperiences;
-
-    private List<SkillDto> skills;
 }
