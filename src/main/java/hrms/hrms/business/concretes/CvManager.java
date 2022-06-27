@@ -58,7 +58,7 @@ public class CvManager implements CvService {
     @Override
     public Result delete(int cvId) {
         if(cvDao.getByCvId(cvId)!=null){
-            cvDao.deleteByCvId(cvId);
+            cvDao.deleteById(cvId);
             return new SuccessResult("Cv deleted");
         }
         return new ErrorResult("Cv Id doesn't exist");

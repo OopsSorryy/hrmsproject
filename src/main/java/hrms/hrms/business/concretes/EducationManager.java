@@ -57,7 +57,7 @@ public class EducationManager implements EducationService {
     @Override
     public Result delete(int educationId) {
         if(educationDao.getByEducationId(educationId)!=null){
-            educationDao.deleteByEducationId(educationId);
+            educationDao.deleteById(educationId);
             return new SuccessResult("Education deleted");
         }
         return new ErrorResult("Education Id doesn't exist");

@@ -79,7 +79,7 @@ public class JobSeekerManager implements JobSeekerService {
     @Override
     public Result delete(int jobSeekerId) {
         if(jobSeekerDao.getByJobSeekerId(jobSeekerId)!=null){
-            jobSeekerDao.deleteByJobSeekerId(jobSeekerId);
+            jobSeekerDao.deleteById(jobSeekerId);
             return new SuccessResult("JobSeeker deleted");
         }
         return new ErrorResult("JobSeeker Id doesn't exist");

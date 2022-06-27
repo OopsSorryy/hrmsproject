@@ -56,7 +56,7 @@ public class JobExperienceManager implements JobExperienceService {
     @Override
     public Result delete(int jobExperienceId) {
         if(jobExperienceDao.getByJobExperienceId(jobExperienceId)!=null){
-            jobExperienceDao.deleteByJobExperienceId(jobExperienceId);
+            jobExperienceDao.deleteById(jobExperienceId);
             return new SuccessResult("JobExperience deleted");
         }
         return new ErrorResult("JobExperience Id doesn't exist");

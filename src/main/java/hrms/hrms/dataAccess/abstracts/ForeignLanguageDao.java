@@ -8,5 +8,5 @@ public interface ForeignLanguageDao extends JpaRepository<ForeignLanguage,Intege
 
     ForeignLanguage getByForeignLanguageId(int foreignLanguageId);
 
-    ForeignLanguage deleteByForeignLanguageId(int foreignLanguageId);
+
 }

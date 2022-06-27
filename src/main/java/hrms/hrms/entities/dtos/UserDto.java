@@ -1,37 +1,32 @@
 package hrms.hrms.entities.dtos;
 
-
-
-
+import hrms.hrms.core.utilities.validator.PasswordMatches;
+import hrms.hrms.core.utilities.validator.ValidPassword;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
-
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-
-public class EmployerDto extends UserDto {
-
-    @NotNull
-    @NotBlank
-    private String webSite;
+@PasswordMatches
+public class UserDto {
 
     @NotNull
     @NotBlank
-    private String employerName;
+    @Email(regexp = ".+@.+\\..+")
+    private String email;
 
     @NotNull
     @NotBlank
-    @Size(min = 11, max = 11)
-    private String telephoneNumber;
+    @ValidPassword
+    private String password;
 
-
+    @NotNull
+    @NotBlank
+    private String matchingPassword;
 }

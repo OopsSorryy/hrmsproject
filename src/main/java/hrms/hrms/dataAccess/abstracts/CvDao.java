@@ -8,5 +8,4 @@ public interface CvDao extends JpaRepository<Cv,Integer> {
 
     Cv getByCvId(int cvId);
 
-    Cv deleteByCvId(int cvId);
 }

@@ -73,7 +73,7 @@ public class JobAdvertisementManager implements JobAdvertisementService {
     @Override
     public Result delete(int jobId) {
         if(jobAdvertisementDao.getByJobId(jobId)!=null){
-            jobAdvertisementDao.deleteByJobId(jobId);
+            jobAdvertisementDao.deleteById(jobId);
             return new SuccessResult("Job deleted");
         }
         return new ErrorResult("Job Id doesn't exist");

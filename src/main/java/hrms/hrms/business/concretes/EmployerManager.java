@@ -99,7 +99,7 @@ public class EmployerManager implements EmployerService {
     @Override
     public Result delete(int employerId) {
         if(employerDao.getByEmployerId(employerId)!=null){
-            employerDao.deleteByEmployerId(employerId);
+            employerDao.deleteById(employerId);
             return new SuccessResult("Employer deleted");
         }
         return new ErrorResult("Employer Id doesn't exist");

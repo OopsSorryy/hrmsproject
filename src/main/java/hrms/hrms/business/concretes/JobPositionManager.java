@@ -77,7 +77,7 @@ public class JobPositionManager implements JobPositionService {
     @Override
     public Result delete(int jobPositionId) {
         if(jobPositionDao.getByJobPositionId(jobPositionId)!=null){
-            jobPositionDao.deleteByJobPositionId(jobPositionId);
+            jobPositionDao.deleteById(jobPositionId);
             return new SuccessResult("JobPosition deleted");
         }
         return new ErrorResult("JobPosition Id doesn't exist");

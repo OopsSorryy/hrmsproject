@@ -7,5 +7,5 @@ public interface EducationDao extends JpaRepository<Education,Integer> {
 
     Education getByEducationId(int educationId);
 
-    Education deleteByEducationId(int educationId);
+
 }

@@ -8,5 +8,5 @@ public interface JobExperienceDao extends JpaRepository<JobExperience,Integer> {
 
     JobExperience getByJobExperienceId(int jobExperienceId);
 
-    JobExperience deleteByJobExperienceId(int jobExperienceId);
+
 }

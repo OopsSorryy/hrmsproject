@@ -8,5 +8,5 @@ public interface SkillDao extends JpaRepository<Skill,Integer> {
 
     Skill getBySkillId(int skillId);
 
-    Skill deleteBySkillId(int skillId);
+
 }

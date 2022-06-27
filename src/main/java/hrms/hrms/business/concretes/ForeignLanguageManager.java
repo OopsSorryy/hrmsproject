@@ -55,7 +55,7 @@ public class ForeignLanguageManager implements ForeignLanguageService {
     @Override
     public Result delete(int foreignLanguageId) {
         if(foreignLanguageDao.getByForeignLanguageId(foreignLanguageId)!=null){
-            foreignLanguageDao.deleteByForeignLanguageId(foreignLanguageId);
+            foreignLanguageDao.deleteById(foreignLanguageId);
             return new SuccessResult("ForeignLanguage deleted");
         }
         return new ErrorResult("ForeignLanguage Id doesn't exist");
