@@ -1,16 +1,16 @@
 package hrms.hrms.entities.concretes;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import hrms.hrms.core.entities.BaseEntity;
+
+import hrms.hrms.core.entities.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.validator.constraints.Length;
+
 
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
+
 import java.util.Date;
 import java.util.List;
 
@@ -19,7 +19,7 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name = "jobSeekers")
-public class JobSeeker extends BaseEntity {
+public class JobSeeker extends User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

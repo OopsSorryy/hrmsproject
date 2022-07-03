@@ -1,7 +1,6 @@
 package hrms.hrms.core.utilities.validator;
 
-import hrms.hrms.entities.dtos.JobSeekerDto;
-import hrms.hrms.entities.dtos.UserDto;
+import hrms.hrms.core.entities.dtos.UserDto;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;

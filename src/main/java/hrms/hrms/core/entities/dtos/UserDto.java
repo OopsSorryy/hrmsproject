@@ -1,4 +1,4 @@
-package hrms.hrms.entities.dtos;
+package hrms.hrms.core.entities.dtos;
 
 import hrms.hrms.core.utilities.validator.PasswordMatches;
 import hrms.hrms.core.utilities.validator.ValidPassword;

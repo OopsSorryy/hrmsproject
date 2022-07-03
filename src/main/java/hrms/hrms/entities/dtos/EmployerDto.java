@@ -3,6 +3,7 @@ package hrms.hrms.entities.dtos;
 
 
 
+import hrms.hrms.core.entities.dtos.UserDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
