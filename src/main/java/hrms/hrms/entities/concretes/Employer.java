@@ -15,12 +15,8 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name = "employers")
+@PrimaryKeyJoinColumn(name = "employerId",referencedColumnName = "userId")
 public class Employer extends User {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "employerId")
-    private int employerId;
 
     @Column(name = "employerName",unique = true)
     private String employerName;

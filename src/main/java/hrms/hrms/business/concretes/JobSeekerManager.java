@@ -35,8 +35,8 @@ public class JobSeekerManager implements JobSeekerService {
     @Override
     public DataResult<JobSeekerDto> getByJobSeekerId(int jobSeekerId) {
 
-        if(jobSeekerDao.getByJobSeekerId(jobSeekerId)!=null){
-            JobSeeker jobSeeker = this.jobSeekerDao.getByJobSeekerId(jobSeekerId);
+        if(jobSeekerDao.getById(jobSeekerId)!=null){
+            JobSeeker jobSeeker = this.jobSeekerDao.getById(jobSeekerId);
             return new SuccessDataResult<JobSeekerDto>((modelMapper.map(jobSeeker,JobSeekerDto.class)),"Data listed");
         }
         return new ErrorDataResult<JobSeekerDto>("JobSeeker Id doesn't exist");
@@ -57,7 +57,7 @@ public class JobSeekerManager implements JobSeekerService {
 
     @Override
     public Result update(int jobSeekerId, JobSeekerDto jobSeekerDto) {
-        JobSeeker jobSeeker = this.jobSeekerDao.getByJobSeekerId(jobSeekerId);
+        JobSeeker jobSeeker = this.jobSeekerDao.getById(jobSeekerId);
 
         if(jobSeeker != null){
             jobSeeker.setEmail(jobSeekerDto.getEmail());
@@ -78,7 +78,7 @@ public class JobSeekerManager implements JobSeekerService {
 
     @Override
     public Result delete(int jobSeekerId) {
-        if(jobSeekerDao.getByJobSeekerId(jobSeekerId)!=null){
+        if(jobSeekerDao.getById(jobSeekerId)!=null){
             jobSeekerDao.deleteById(jobSeekerId);
             return new SuccessResult("JobSeeker deleted");
         }

@@ -19,12 +19,9 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name = "jobSeekers")
+@PrimaryKeyJoinColumn(name = "jobSeekerId",referencedColumnName = "userId")
 public class JobSeeker extends User {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "jobSeekerId")
-    private int jobSeekerId;
 
     @Column(name = "firstName")
     private String firstName;
