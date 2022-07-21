@@ -15,7 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name = "employers")
-@PrimaryKeyJoinColumn(name = "employerId",referencedColumnName = "userId")
+@PrimaryKeyJoinColumn(name = "employerId",referencedColumnName = "id")
 public class Employer extends User {
 
     @Column(name = "employerName",unique = true)

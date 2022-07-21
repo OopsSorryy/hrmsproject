@@ -67,7 +67,7 @@ public class CvManager implements CvService {
     @Override
     public Result addCvInJobSeeker(int cvId, int jobSeekerId) {
         Cv cv = cvDao.getByCvId(cvId);
-        JobSeeker jobSeeker = jobSeekerDao.getByJobSeekerId(jobSeekerId);
+        JobSeeker jobSeeker = jobSeekerDao.getById(jobSeekerId);
         cv.addJobSeeker(jobSeeker);
         jobSeekerDao.save(jobSeeker);
         return new SuccessResult("Cv added by Job Seeker.");

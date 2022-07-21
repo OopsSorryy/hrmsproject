@@ -19,8 +19,9 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name = "jobSeekers")
-@PrimaryKeyJoinColumn(name = "jobSeekerId",referencedColumnName = "userId")
+@PrimaryKeyJoinColumn(name = "jobSeekerId",referencedColumnName = "id")
 public class JobSeeker extends User {
+
 
 
     @Column(name = "firstName")
@@ -35,6 +36,15 @@ public class JobSeeker extends User {
     @Column(name = "birthDate")
     @Temporal(TemporalType.DATE)
     private Date birthDate;
+
+    public JobSeeker(String firstName,String lastName,String nationalityId,Date birthDate,String email,String password,String matchingPassword){
+        super(email, password,matchingPassword);
+        this.firstName=firstName;
+        this.birthDate=birthDate;
+        this.lastName=lastName;
+        this.nationalityId=nationalityId;
+
+    }
 
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL,mappedBy ="jobSeeker")

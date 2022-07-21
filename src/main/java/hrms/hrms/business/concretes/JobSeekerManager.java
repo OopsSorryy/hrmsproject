@@ -4,9 +4,12 @@ import hrms.hrms.business.abstracts.JobSeekerService;
 import hrms.hrms.core.utilities.results.*;
 import hrms.hrms.dataAccess.abstracts.JobSeekerDao;
 import hrms.hrms.entities.concretes.JobSeeker;
+import hrms.hrms.entities.concretes.Role;
 import hrms.hrms.entities.dtos.JobSeekerDto;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -45,11 +48,15 @@ public class JobSeekerManager implements JobSeekerService {
     @Override
     public Result add(JobSeekerDto jobSeekerDto) {
         JobSeeker jobSeeker = modelMapper.map(jobSeekerDto, JobSeeker.class);
+
+        jobSeeker.addRole(new Role(1));
         if((this.jobSeekerDao.getByNationalityId(jobSeeker.getNationalityId()) !=null) || (this.jobSeekerDao.getByEmail(jobSeeker.getEmail()) != null) ){
             return new ErrorResult(" JobSeeker already exist ");
         }
-
-
+        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String encodePassword = passwordEncoder.encode(jobSeeker.getPassword());
+        jobSeeker.setPassword(encodePassword);
+        jobSeeker.setMatchingPassword(encodePassword);
         modelMapper.map(this.jobSeekerDao.save(jobSeeker), JobSeekerDto.class);
         return new SuccessResult("JobSeeker added");
 

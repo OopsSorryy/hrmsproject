@@ -2,7 +2,6 @@ package hrms.hrms.core.business.concretes;
 
 import hrms.hrms.core.business.abstracts.UserService;
 import hrms.hrms.core.dataAccess.abstracts.UserDao;
-import hrms.hrms.core.entities.SecurityUser;
 import hrms.hrms.core.entities.User;
 import hrms.hrms.core.utilities.results.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +11,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserManager implements UserService, UserDetailsService {
@@ -52,10 +52,9 @@ public class UserManager implements UserService, UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userDao.findByEmail(username);
-        if (user == null) {
-            throw new UsernameNotFoundException("User details not found for the user : " + username);
-        }
-        return new SecurityUser(user);
+        Optional<User> user = userDao.findByEmail(username);
+
+        return user.orElseThrow(() ->  new UsernameNotFoundException("Invalid Credentials"));
+
     }
 }

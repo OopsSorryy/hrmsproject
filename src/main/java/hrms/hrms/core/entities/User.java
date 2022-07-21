@@ -1,36 +1,86 @@
 package hrms.hrms.core.entities;
 
-import hrms.hrms.entities.concretes.Authority;
+import hrms.hrms.entities.concretes.Role;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 
+import java.util.*;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
+
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "users")
-public class User {
+@AllArgsConstructor
+@NoArgsConstructor
+@Inheritance(strategy = InheritanceType.JOINED)
+@Data
+public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "userId")
-    private int userId;
+    private int id;
 
-    @Column(name = "email",unique = true)
+    @Column(nullable = false,unique = true,length = 50)
     private String email;
-
-    @Column(name = "password")
-    private String password;
+    @Column(nullable = false, length = 64)
+    private  String password;
 
     @Column(name = "confirmPassword")
     private String matchingPassword;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name ="users_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
+    private Set<Role> roles = new HashSet<>();
 
-    @OneToOne(cascade = CascadeType.ALL,mappedBy = "user")
-    private Authority authority;
+    public void addRole(Role role){
+        this.roles.add(role);
+    }
 
+    public User(String email, String password,String matchingPassword){
+        this.email = email;
+        this.password = password;
+        this.matchingPassword =matchingPassword;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+
+        List<SimpleGrantedAuthority> authorities = new ArrayList<>();
+        for (Role role : roles) {
+            authorities.add(new SimpleGrantedAuthority(role.getName()));
+        }
+        return authorities;
+    }
+
+    @Override
+    public String getUsername() {
+        return this.email;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
 }

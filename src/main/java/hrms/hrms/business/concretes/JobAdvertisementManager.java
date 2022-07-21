@@ -63,7 +63,7 @@ public class JobAdvertisementManager implements JobAdvertisementService {
     @Override
     public Result addJobAdvertisementInEmployer(int employerId, int jobId){
         JobAdvertisement jobAdvertisement = jobAdvertisementDao.getByJobId(jobId);
-        Employer employers = employerDao.getByEmployerId(employerId);
+        Employer employers = employerDao.getById(employerId);
         jobAdvertisement.addEmployer(employers);
         employerDao.save(employers);
         return new SuccessResult("Job Advertisement added by employer.");
